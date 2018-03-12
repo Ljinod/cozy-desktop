@@ -3,11 +3,21 @@ extends:
   - standard
   - plugin:import/errors
   - plugin:import/warnings
-parser: babel-eslint
-plugins:
-  - flowtype
+  - plugin:node/recommended
 rules:
   # We use eslint-plugin-import instead of this rule since:
   # - it catches more mistakes
   # - it supports separate Flow type imports
   no-duplicate-imports: off
+  # Requiring unpublished modules doesn't matter so much since CozyDrive is not
+  # an npm package anymore. And we have better to do than fixing this issue
+  # right now. We may still need to do so to bring back the CLI, though.
+  node/no-unpublished-require: off
+  # FIXME:
+  import/first: off
+  # FIXME:
+  no-process-exit: off
+  # FIXME:
+  node/no-extraneous-require: off
+  # FIXME:
+  node/shebang: off
