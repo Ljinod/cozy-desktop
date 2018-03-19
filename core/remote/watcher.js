@@ -13,7 +13,7 @@ const { inRemoteTrash } = require('./document')
 import type EventEmitter from 'events'
 import type Pouch from '../pouch'
 import type Prep from '../prep'
-import type RemoteCozy from './cozy'
+import type { RemoteCozy } from './cozy'
 import type { Metadata } from '../metadata'
 import type { RemoteChange, RemoteNoise, RemoteFileMove } from './change'
 import type { RemoteDoc, RemoteDeletion } from './document'
@@ -38,9 +38,6 @@ class RemoteWatcher {
   intervalID: *
   runningResolve: ?() => void
   */
-
-  // FIXME: static DEFAULT_HEARTBEAT = DEFAULT_HEARTBEAT
-  // FIXME: static HEARTBEAT = HEARTBEAT
 
   constructor (pouch /*: Pouch */, prep /*: Prep */, remoteCozy /*: RemoteCozy */, events /*: EventEmitter */) {
     this.pouch = pouch
@@ -395,4 +392,7 @@ class RemoteWatcher {
   }
 }
 
-module.exports = RemoteWatcher
+module.exports = {
+  HEARTBEAT,
+  RemoteWatcher
+}

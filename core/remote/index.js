@@ -3,9 +3,9 @@
 const { posix, sep } = require('path')
 
 const conversion = require('../conversion')
-const RemoteCozy = require('./cozy')
+const { RemoteCozy } = require('./cozy')
 const logger = require('../logger')
-const Watcher = require('./watcher')
+const Watcher = require('./watcher').RemoteWatcher
 const measureTime = require('../perftools')
 const { withContentLength } = require('../file_stream_provider')
 
