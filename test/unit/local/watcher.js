@@ -84,9 +84,7 @@ describe('LocalWatcher Tests', function () {
 
       should(this.watcher.checksum.args).deepEqual([[changedFilename]])
       should(await this.pouch.db.get(unchangedDoc._id)).have.properties(unchangedDoc)
-      should(await this.pouch.db.get(changedDoc._id)).have.properties({
-        ...changedDoc
-      })
+      should(await this.pouch.db.get(changedDoc._id)).have.properties(changedDoc)
     })
 
     it('ignores the temporary directory', function (done) {

@@ -3,7 +3,8 @@
 
 const async = require('async')
 const EventEmitter = require('events')
-const { clone } = require('lodash')
+const _ = require('lodash')
+const { clone } = _
 const path = require('path')
 const sinon = require('sinon')
 const should = require('should')
@@ -610,7 +611,10 @@ describe('RemoteWatcher', function () {
       assignId(oldMeta)
       await this.pouch.db.put(oldMeta)
       // TODO: builders.remote.dir().was(oldDir).trashed().build()
-      const newDir /*: RemoteDoc */ = {...oldDir, path: '/.cozy_trash/foo', dir_id: TRASH_DIR_ID}
+      const newDir /*: RemoteDoc */ = _.merge(
+        {path: '/.cozy_trash/foo', dir_id: TRASH_DIR_ID},
+        oldDir
+      )
 
       this.watcher.identifyChange(newDir, null, 0, [])
 
@@ -637,7 +641,10 @@ describe('RemoteWatcher', function () {
       assignId(oldMeta)
       await this.pouch.db.put(oldMeta)
       // TODO: builders.remote.dir().was(oldDir).restored().build()
-      const newDir /*: RemoteDoc */ = {...oldDir, path: '/foo', dir_id: ROOT_DIR_ID}
+      const newDir /*: RemoteDoc */ = _.merge(
+        {path: '/foo', dir_id: ROOT_DIR_ID},
+        oldDir
+      )
 
       this.watcher.identifyChange(newDir, null, 0, [])
 
