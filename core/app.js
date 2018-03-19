@@ -40,7 +40,7 @@ const SUPPORT_EMAIL = process.env.COZY_DESKTOP_SUPPORT_EMAIL || 'contact@cozyclo
 
 // App is the entry point for the CLI and GUI.
 // They both can do actions and be notified by events via an App instance.
-module.exports = class App {
+class App {
   /*::
   lang: string
   basePath: string
@@ -54,8 +54,6 @@ module.exports = class App {
   remote: Remote
   sync: Sync
   */
-
-  // FIXME: static logger = logger
 
   // basePath is the directory where the config and pouch are saved
   constructor (basePath /*: string */) {
@@ -367,4 +365,9 @@ module.exports = class App {
     if (!this.remote) this.instanciate()
     return this.remote.diskUsage()
   }
+}
+
+module.exports = {
+  App,
+  logger
 }
